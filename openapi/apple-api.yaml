@@ -20,7 +20,25 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ProductShort'
-  ## Your code here
+  /sales/{country}:
+    parameters:
+    - name: country
+      in: path
+      required: true
+      schema:
+        type : string
+    get:
+      summary: Returns a list of sale of the country.
+      operationId: controller.get_sales
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SalesVolume'
 
 components:
   schemas:
@@ -31,4 +49,10 @@ components:
           type: integer
         name:
           type: string
-    ## Your code here
+    SalesVolume:
+      type: object
+      properties:
+        amount:
+          type: number
+        country:
+          type: string
